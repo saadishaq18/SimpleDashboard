@@ -1,4 +1,9 @@
 import React from "react";
+import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Filler, Tooltip, Legend, Title, ArcElement, BarElement } from 'chart.js';
+import { Line, Bar, Doughnut } from 'react-chartjs-2';
+
+// Register the necessary Chart.js components
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Filler, Tooltip, Legend, Title, ArcElement, BarElement);
 
 export const Input = ({ label, name, register, error, ...rest }) => {
     return (
@@ -35,3 +40,13 @@ export const Select = ({ label, name, options, register, error, ...rest }) => {
     );
   };
   
+  export const Chart = ({ type, data, options }) => {
+    switch (type) {
+      case 'line':
+        return <Line data={data} options={options} height={50} width={400}/>;
+      case 'bar':
+        return <Bar data={data} options={options} height={50} width={400}/>;
+      default:
+        return null;
+    }
+  };
